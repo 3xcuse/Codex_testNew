@@ -54,3 +54,11 @@ Készíts egy weboldalt **responsive** designnal, optimalizálva desktop és mob
 - A **Foci** és **Úszás** oldal releváns képet tartalmazzon.
 - Az **Űrutazás** oldalra egy közel 1000 karakteres, izgalmas leírás kerüljön.
 - Add fade-through navigation and persistent menu
+
+## GDPR és cookiek követelmény
+
+add simple cookie banner with accept/decline
+provide a cookie policy page
+link policy and settings from the footer
+include banner script on all pages
+style the banner
