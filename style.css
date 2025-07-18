@@ -238,3 +238,45 @@ main {
         grid-template-columns: 1fr;
     }
 }
+
+/* Cookie banner */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color-blue);
+    color: var(--text-color);
+    padding: 10px;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.2);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    text-align: center;
+}
+.cookie-banner p {
+    margin: 0 10px 5px 0;
+}
+.cookie-banner .buttons {
+    display: flex;
+    gap: 5px;
+}
+.cookie-banner button {
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+.cookie-banner button.accept {
+    background-color: var(--color-green);
+}
+.cookie-banner button.decline {
+    background-color: var(--color-purple);
+}
+.cookie-banner a {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
