@@ -1,5 +1,6 @@
-// Load navigation bar and setup mobile menu
+// Load navigation bar and footer, setup mobile menu
 window.addEventListener('DOMContentLoaded', () => {
+    // Navigation
     fetch('nav.html')
         .then(resp => resp.text())
         .then(html => {
@@ -15,5 +16,13 @@ window.addEventListener('DOMContentLoaded', () => {
             const page = location.pathname.split('/').pop();
             const active = menu.querySelector(`a[href="${page}"]`);
             if (active) active.classList.add('active');
+        });
+
+    // Footer
+    fetch('footer.html')
+        .then(resp => resp.text())
+        .then(html => {
+            const container = document.getElementById('footer-container');
+            if (container) container.innerHTML = html;
         });
 });
