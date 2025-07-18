@@ -98,6 +98,41 @@ body {
     padding: 14px 20px;
 }
 
+.search-results {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.search-container.open .search-results {
+    display: block;
+}
+
+.search-results a {
+    display: block;
+    padding: 6px 10px;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.search-results a:hover {
+    background-color: var(--color-blue);
+}
+
+.search-results a.selected {
+    background-color: var(--color-green);
+    color: #fff;
+}
+
 main {
     padding: 20px;
 }

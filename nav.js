@@ -23,12 +23,23 @@ window.addEventListener('DOMContentLoaded', () => {
             if (search) {
                 const searchToggle = search.querySelector('.search-toggle');
                 const input = search.querySelector('.search-input');
+                const results = document.createElement('div');
+                results.className = 'search-results';
+                results.setAttribute('role', 'listbox');
+                search.appendChild(results);
+                let searchTimer;
+                let activeIndex = -1;
+
                 const toggleSearch = () => {
                     search.classList.toggle('open');
                     if (search.classList.contains('open')) {
                         input.focus();
+                    } else {
+                        results.innerHTML = '';
+                        activeIndex = -1;
                     }
                 };
+
                 searchToggle.addEventListener('click', toggleSearch);
                 searchToggle.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -36,6 +47,85 @@ window.addEventListener('DOMContentLoaded', () => {
                         toggleSearch();
                     }
                 });
+
+                input.addEventListener('input', () => {
+                    clearTimeout(searchTimer);
+                    searchTimer = setTimeout(() => {
+                        performSearch(input.value.trim());
+                    }, 1000);
+                });
+
+                input.addEventListener('keydown', (e) => {
+                    const items = Array.from(results.querySelectorAll('a'));
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        if (!items.length) return;
+                        activeIndex = (activeIndex + 1) % items.length;
+                        updateSelection(items);
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        if (!items.length) return;
+                        activeIndex = (activeIndex - 1 + items.length) % items.length;
+                        updateSelection(items);
+                    } else if (e.key === 'Enter' && activeIndex >= 0) {
+                        e.preventDefault();
+                        items[activeIndex].click();
+                    }
+                });
+
+                function updateSelection(items) {
+                    items.forEach((el, i) => {
+                        const selected = i === activeIndex;
+                        el.classList.toggle('selected', selected);
+                        el.setAttribute('aria-selected', selected);
+                        if (selected) {
+                            el.scrollIntoView({ block: 'nearest' });
+                        }
+                    });
+                }
+
+                async function performSearch(query) {
+                    results.innerHTML = '';
+                    activeIndex = -1;
+                    if (!query) return;
+                    const pages = ['index.html', 'foci.html', 'uszas.html', 'ur.html'];
+                    const matches = [];
+                    await Promise.all(pages.map(async page => {
+                        try {
+                            const resp = await fetch(page);
+                            if (!resp.ok) return;
+                            const text = await resp.text();
+                            const doc = new DOMParser().parseFromString(text, 'text/html');
+                            if (doc.body.textContent.toLowerCase().includes(query.toLowerCase())) {
+                                const title = doc.querySelector('title');
+                                matches.push({ url: page, title: title ? title.textContent : page });
+                            }
+                        } catch (_) {
+                            /* ignore */
+                        }
+                    }));
+
+                    if (!matches.length) {
+                        results.textContent = 'Nincs találat';
+                        return;
+                    }
+
+                    matches.forEach(match => {
+                        const a = document.createElement('a');
+                        a.href = match.url;
+                        a.textContent = match.title;
+                        a.setAttribute('role', 'option');
+                        a.addEventListener('click', (evt) => {
+                            evt.preventDefault();
+                            search.classList.remove('open');
+                            results.innerHTML = '';
+                            history.pushState(null, '', match.url);
+                            setActive(match.url);
+                            loadContent(match.url);
+                        });
+                        results.appendChild(a);
+                    });
+                }
             }
             menu.querySelectorAll('.links a').forEach(a => {
                 a.addEventListener('click', evt => {
