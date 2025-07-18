@@ -27,8 +27,10 @@ window.addEventListener('DOMContentLoaded', () => {
                 results.className = 'search-results';
                 results.setAttribute('role', 'listbox');
                 search.appendChild(results);
+
                 let searchTimer;
                 let activeIndex = -1;
+
 
                 const toggleSearch = () => {
                     search.classList.toggle('open');
@@ -37,6 +39,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     } else {
                         results.innerHTML = '';
                         activeIndex = -1;
+
                     }
                 };
 
