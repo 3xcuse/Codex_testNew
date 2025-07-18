@@ -4,7 +4,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Load navigation only once
     fetch('nav.html')
-        .then(resp => resp.text())
+        .then(resp => {
+            if (!resp.ok) throw new Error(`Failed to load navigation: ${resp.status}`);
+            return resp.text();
+        })
         .then(html => {
             document.getElementById('nav-container').innerHTML = html;
             const menu = document.querySelector('.menu');
@@ -24,14 +27,27 @@ window.addEventListener('DOMContentLoaded', () => {
             setActive(page);
             // When landing on a page directly, ensure correct content is loaded
             if (page !== 'index.html') loadContent(page);
+        })
+        .catch(err => {
+            console.error(err);
+            const container = document.getElementById('nav-container');
+            if (container) container.textContent = 'Navigation failed to load.';
         });
 
     // Footer (static)
     fetch('footer.html')
-        .then(resp => resp.text())
+        .then(resp => {
+            if (!resp.ok) throw new Error(`Failed to load footer: ${resp.status}`);
+            return resp.text();
+        })
         .then(html => {
             const container = document.getElementById('footer-container');
             if (container) container.innerHTML = html;
+        })
+        .catch(err => {
+            console.error(err);
+            const container = document.getElementById('footer-container');
+            if (container) container.textContent = 'Footer failed to load.';
         });
 
     // Handle browser navigation
@@ -52,7 +68,10 @@ window.addEventListener('DOMContentLoaded', () => {
     function loadContent(url) {
         if (!content) return;
         fetch(url)
-            .then(resp => resp.text())
+            .then(resp => {
+                if (!resp.ok) throw new Error(`Failed to load ${url}: ${resp.status}`);
+                return resp.text();
+            })
             .then(html => {
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
@@ -66,6 +85,11 @@ window.addEventListener('DOMContentLoaded', () => {
                     content.innerHTML = `<main class="card">${newHtml}</main>`;
                     content.classList.remove('fade-out');
                 }, { once: true });
+            })
+            .catch(err => {
+                console.error(err);
+                content.innerHTML = '<main class="card">Failed to load content.</main>';
+                content.classList.remove('fade-out');
             });
     }
 });
