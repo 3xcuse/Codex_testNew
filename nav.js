@@ -66,7 +66,10 @@ window.addEventListener('DOMContentLoaded', () => {
         })
         .then(html => {
             const container = document.getElementById('footer-container');
-            if (container) container.innerHTML = html;
+            if (container) {
+                container.innerHTML = html;
+                if (window.feather) window.feather.replace(container);
+            }
         })
         .catch(err => {
             console.error(err);
