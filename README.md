@@ -53,4 +53,4 @@ Készíts egy weboldalt **responsive** designnal, optimalizálva desktop és mob
 - Ahol nincs konkrét utasítás, a Google Material Design irányelveit kell figyelembe venni.
 - A **Foci** és **Úszás** oldal releváns képet tartalmazzon.
 - Az **Űrutazás** oldalra egy közel 1000 karakteres, izgalmas leírás kerüljön.
-- Az útmutatót `README.md` formátumban is mentsd el.
+- Add fade-through navigation and persistent menu
