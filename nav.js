@@ -28,12 +28,18 @@ window.addEventListener('DOMContentLoaded', () => {
                 results.setAttribute('role', 'listbox');
                 search.appendChild(results);
 
+                let searchTimer;
+                let activeIndex = -1;
+
+
                 const toggleSearch = () => {
                     search.classList.toggle('open');
                     if (search.classList.contains('open')) {
                         input.focus();
                     } else {
                         results.innerHTML = '';
+                        activeIndex = -1;
+
                     }
                 };
 
@@ -45,15 +51,45 @@ window.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                input.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter') {
-                        e.preventDefault();
+                input.addEventListener('input', () => {
+                    clearTimeout(searchTimer);
+                    searchTimer = setTimeout(() => {
                         performSearch(input.value.trim());
+                    }, 1000);
+                });
+
+                input.addEventListener('keydown', (e) => {
+                    const items = Array.from(results.querySelectorAll('a'));
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        if (!items.length) return;
+                        activeIndex = (activeIndex + 1) % items.length;
+                        updateSelection(items);
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        if (!items.length) return;
+                        activeIndex = (activeIndex - 1 + items.length) % items.length;
+                        updateSelection(items);
+                    } else if (e.key === 'Enter' && activeIndex >= 0) {
+                        e.preventDefault();
+                        items[activeIndex].click();
                     }
                 });
 
+                function updateSelection(items) {
+                    items.forEach((el, i) => {
+                        const selected = i === activeIndex;
+                        el.classList.toggle('selected', selected);
+                        el.setAttribute('aria-selected', selected);
+                        if (selected) {
+                            el.scrollIntoView({ block: 'nearest' });
+                        }
+                    });
+                }
+
                 async function performSearch(query) {
                     results.innerHTML = '';
+                    activeIndex = -1;
                     if (!query) return;
                     const pages = ['index.html', 'foci.html', 'uszas.html', 'ur.html'];
                     const matches = [];

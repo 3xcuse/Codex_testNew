@@ -128,6 +128,11 @@ body {
     background-color: var(--color-blue);
 }
 
+.search-results a.selected {
+    background-color: var(--color-green);
+    color: #fff;
+}
+
 main {
     padding: 20px;
 }
