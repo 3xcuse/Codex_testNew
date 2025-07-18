@@ -19,6 +19,9 @@ body {
     display: flex;
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .menu .links {
@@ -66,6 +69,33 @@ body {
     cursor: pointer;
     background: none;
     border: none;
+}
+
+.search-container {
+    position: relative;
+    margin-right: 10px;
+}
+
+.search-input {
+    width: 0;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: width 0.3s, opacity 0.3s;
+    opacity: 0;
+}
+
+.search-container.open .search-input {
+    width: 150px;
+    opacity: 1;
+}
+
+.search-toggle {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 14px 20px;
 }
 
 main {
