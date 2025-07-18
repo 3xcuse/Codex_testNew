@@ -204,6 +204,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     content.removeEventListener('transitionend', handler);
                     content.innerHTML = `<main class="card">${newHtml}</main>`;
                     content.classList.remove('fade-out');
+                    if (url === "index.html" && window.initRandomVideo) window.initRandomVideo();
                 }, { once: true });
             })
             .catch(err => {

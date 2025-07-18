@@ -286,3 +286,6 @@ main {
     text-decoration: underline;
 }
 
+
+#random-video { margin-top: 20px; text-align: center; }
+#random-video iframe { max-width: 100%; }
