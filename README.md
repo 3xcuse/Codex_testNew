@@ -54,6 +54,7 @@ Készíts egy weboldalt **responsive** designnal, optimalizálva desktop és mob
 - A **Foci** és **Úszás** oldal releváns képet tartalmazzon.
 - Az **Űrutazás** oldalra egy közel 1000 karakteres, izgalmas leírás kerüljön.
 - Add fade-through navigation and persistent menu
+- A lábléc maradjon fixen az oldal alján, a tartalom hagyjon elegendő helyet előtte
 
 ## GDPR és cookiek követelmény
 
