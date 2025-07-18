@@ -10,11 +10,11 @@ Készíts egy weboldalt **responsive** designnal, optimalizálva desktop és mob
 - **Célközönség:** Startup befektetők
 - **Stílus / hangulat:** Technológiai, letisztult, modern, whitespace hangsúlyos
 
-### Színpaletta (pasztell árnyalatok)
+### Színpaletta (új árnyalatok)
 
-- Pasztellkék `#AFCBFF`
-- Pasztellzöld `#C1E1C1`
-- Pasztelllila `#E6CCFF`
+- Szürke `#727374`
+- Bézs `#F0D4BA`
+- Zöld `#89A585`
 
 ### Betűtípus
 
