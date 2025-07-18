@@ -35,6 +35,7 @@ window.initRandomVideo = function() {
     firstScript.parentNode.insertBefore(tag, firstScript);
     window.onYouTubeIframeAPIReady = createPlayer;
   }
+
 };
 
 window.addEventListener('DOMContentLoaded', () => {
