@@ -1,0 +1,3 @@
+Készíts egy weboldalt responsive designnal. Azaz legyen optimalizálva desktop és mobilos használatra is.
+
+A weboldalon legyen 3 tab amik egy menüből érhetőek el: Foci - a tabra kattintva nyiljon meg egy oldal ami tartalmazza a foci rövid bemutatását és 1 híres alakját Úszás - a tabra kattintva nyiljon meg egy oldal ami tartalmazza a Úszás rövid bemutatását és 2 híres alakját Űrutazás - a tabra kattintva nyiljon meg egy oldal ami a Repoban az assetsek mappában lévő UR.jpg képet mutatja
