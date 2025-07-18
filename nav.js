@@ -19,6 +19,24 @@ window.addEventListener('DOMContentLoaded', () => {
                     menu.classList.toggle('open');
                 }
             });
+            const search = menu.querySelector('.search-container');
+            if (search) {
+                const searchToggle = search.querySelector('.search-toggle');
+                const input = search.querySelector('.search-input');
+                const toggleSearch = () => {
+                    search.classList.toggle('open');
+                    if (search.classList.contains('open')) {
+                        input.focus();
+                    }
+                };
+                searchToggle.addEventListener('click', toggleSearch);
+                searchToggle.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleSearch();
+                    }
+                });
+            }
             menu.querySelectorAll('.links a').forEach(a => {
                 a.addEventListener('click', evt => {
                     evt.preventDefault();
