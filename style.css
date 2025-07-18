@@ -103,7 +103,14 @@ main {
 .site-footer .social .icon {
     margin: 0 5px;
     text-decoration: none;
-    font-size: 20px;
+    display: inline-block;
+}
+
+.site-footer .social .icon svg {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    stroke: currentColor;
 }
 
 #content {
