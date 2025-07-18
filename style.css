@@ -96,6 +96,14 @@ main {
     font-size: 20px;
 }
 
+#content {
+    transition: opacity 0.3s ease;
+}
+
+#content.fade-out {
+    opacity: 0;
+}
+
 @media (max-width: 600px) {
     .menu .links {
         display: none;
