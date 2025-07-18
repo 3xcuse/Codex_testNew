@@ -10,6 +10,12 @@ window.addEventListener('DOMContentLoaded', () => {
             const menu = document.querySelector('.menu');
             const toggle = menu.querySelector('.menu-toggle');
             toggle.addEventListener('click', () => menu.classList.toggle('open'));
+            toggle.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    menu.classList.toggle('open');
+                }
+            });
             menu.querySelectorAll('.links a').forEach(a => {
                 a.addEventListener('click', evt => {
                     evt.preventDefault();
